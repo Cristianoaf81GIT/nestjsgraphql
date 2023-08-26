@@ -1,0 +1,9 @@
+type Query {
+  courses: [Course] 
+}
+
+type Course {
+  name: String!
+  description: String!
+  duration: String!
+}
