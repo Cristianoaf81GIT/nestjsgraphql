@@ -10,8 +10,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model primasUsers {
+model prismaUsers {
   id String @id
   name String
   email String
+}
+
+model Courses {
+  id String @id
+  name String
+  description String
+  duration String 
 }

@@ -3,6 +3,7 @@ type Query {
 }
 
 type Course {
+  id: String!
   name: String!
   description: String!
   duration: String!

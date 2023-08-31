@@ -15,6 +15,7 @@ export abstract class IQuery {
 }
 
 export class Course {
+    id: string;
     name: string;
     description: string;
     duration: string;
