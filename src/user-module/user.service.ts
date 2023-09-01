@@ -1,6 +1,6 @@
 import {Injectable, Logger} from '@nestjs/common';
 import {PrismaService} from './prisma.service';
-import { User } from 'src/graphql';
+import { CreateUserInput, User } from '../graphql';
 
 @Injectable()
 export class UserService {
@@ -15,6 +15,16 @@ export class UserService {
   async getUsers(): Promise<User[]> {
     this.logger.log('getUsers');
     return this.prisma.prismaUsers.findMany({});
+  }
+
+  async createUser(input: CreateUserInput): Promise<User> {
+    try {
+      let newData = {...input};
+      return this.prisma.prismaUsers.create({data: newData});
+    } catch(error) {
+      this.logger.error(`createUser: ${JSON.stringify(error, null, 4)}`);
+      throw error;
+    }
   }
 }
 

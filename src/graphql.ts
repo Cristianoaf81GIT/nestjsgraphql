@@ -8,6 +8,12 @@
 /* tslint:disable */
 /* eslint-disable */
 
+export class CreateUserInput {
+    id: string;
+    name: string;
+    email: string;
+}
+
 export abstract class IQuery {
     abstract courses(): Nullable<Nullable<Course>[]> | Promise<Nullable<Nullable<Course>[]>>;
 
@@ -19,6 +25,10 @@ export class Course {
     name: string;
     description: string;
     duration: string;
+}
+
+export abstract class IMutation {
+    abstract createUser(data?: Nullable<CreateUserInput>): Nullable<User> | Promise<Nullable<User>>;
 }
 
 export class User {
