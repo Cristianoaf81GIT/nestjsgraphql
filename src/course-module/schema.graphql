@@ -8,3 +8,14 @@ type Course {
   description: String!
   duration: String!
 }
+
+type Mutation {
+  createCourse(data: CourseInput): Course 
+}
+
+input CourseInput {
+ id: String!
+ name: String!
+ description: String!
+ duration: String!
+}
