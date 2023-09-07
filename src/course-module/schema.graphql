@@ -10,7 +10,13 @@ type Course {
 }
 
 type Mutation {
-  createCourse(data: CourseInput): Course 
+  createCourse(data: CourseInput): Course
+  """
+  updates course data
+  @param {CourseUpdateInput} data
+  """
+  updateCourse(data: CourseUpdateInput): Course 
+  deleteCourse(data: CourseDeleteInput): String
 }
 
 input CourseInput {
@@ -18,4 +24,15 @@ input CourseInput {
  name: String!
  description: String!
  duration: String!
+}
+
+input CourseUpdateInput {
+  id: String!
+  name: String
+  description: String
+  duration: String
+}
+
+input CourseDeleteInput {
+  id: String!
 }

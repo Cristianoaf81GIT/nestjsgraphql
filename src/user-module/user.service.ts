@@ -1,6 +1,6 @@
 import {Injectable, Logger} from '@nestjs/common';
 import {PrismaService} from './prisma.service';
-import { CreateUserInput, UpdateUserInput, User } from '../graphql';
+import { CreateUserInput, DeleteUserInput, UpdateUserInput, User } from '../graphql';
 
 @Injectable()
 export class UserService {
@@ -39,6 +39,20 @@ export class UserService {
       });
     } catch(error) {
       this.logger.error(`updateUser: ${JSON.stringify(error, null, 4)}`);
+      throw error;
+    }
+  }
+
+  async deleteUser(input: DeleteUserInput): Promise<string> {
+    try {
+      await this.prisma.prismaUsers.delete({
+        where: {
+          id: input.id
+        }
+      });
+      return `user with id: ${input.id} was succesfully deleted!`;
+    } catch (error) {
+      this.logger.error(`deleteUser: ${JSON.stringify(error, null, 4)}`);
       throw error;
     }
   }

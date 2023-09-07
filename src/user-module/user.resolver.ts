@@ -1,6 +1,6 @@
 import {Query, Resolver, Mutation, Args} from '@nestjs/graphql';
 import {UserService} from './user.service';
-import {CreateUserInput, UpdateUserInput, User} from '../graphql';
+import {CreateUserInput, DeleteUserInput, UpdateUserInput, User} from '../graphql';
 
 @Resolver()
 export class UserResolver {
@@ -21,5 +21,10 @@ export class UserResolver {
   @Mutation('updateUser')
   async updateUser(@Args('data') input: UpdateUserInput): Promise<User> {
     return this.user.updateUser(input); 
+  }
+
+  @Mutation('deleteUser')
+  async DeleteUser(@Args('data') input: DeleteUserInput): Promise<string> {
+    return this.user.deleteUser(input);
   }
 }
